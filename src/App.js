@@ -16,16 +16,36 @@ function App() {
   }
 
   return (
-    <div>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat='image/png'
-      />
-      <button onClick={handleCapture}>Take Picture</button>
-      {
-        screenShots.length > 0 ? renderScreenShots() : null
-      }
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center'
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat='image/png'
+        />
+        <button onClick={handleCapture}>Take Picture</button>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        {
+          screenShots.length > 0 ? renderScreenShots() : null
+        }
+      </div>
     </div>
   );
 }
