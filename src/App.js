@@ -4,12 +4,16 @@ import Webcam from 'react-webcam'
 
 function App() {
   const webcamRef = useRef(null)
-  const [ screenShot, setScreenShot ] = useState(null)
+  const [ screenShots, setScreenShots ] = useState([])
 
   const handleCapture = useCallback(() => {
     const src = webcamRef.current.getScreenshot()
-    setScreenShot(src)
+    setScreenShots([ ...screenShots, src ])
   })
+
+  const renderScreenShots = () => {
+    return screenShots.map(shot => <img src={shot} />)
+  }
 
   return (
     <div>
@@ -20,10 +24,7 @@ function App() {
       />
       <button onClick={handleCapture}>Take Picture</button>
       {
-        screenShot ?
-        <img src={screenShot} />
-        :
-        null
+        screenShots.length > 0 ? renderScreenShots() : null
       }
     </div>
   );
