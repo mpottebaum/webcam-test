@@ -15,9 +15,10 @@ function App() {
     <div>
       <Webcam
         audio={false}
+        ref={webcamRef}
         screenshotFormat='image/png'
       />
-      <button>Take Picture</button>
+      <button onClick={handleCapture}>Take Picture</button>
       {
         screenShot ?
         <img src={screenShot} />
